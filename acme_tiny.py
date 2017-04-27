@@ -112,11 +112,11 @@ def get_crt(account_key, csr, acme_dir, log=LOGGER, CA=DEFAULT_CA):
             wellknown_file.write(keyauthorization)
 
         # check that the file is in place
-        wellknown_url = "http://{0}/.well-known/acme-challenge/{1}".format(domain, token)
-        log.info("Request {0}...".format(wellknown_url))
+        wellknown_url = "https://{0}/.well-known/acme-challenge/{1}".format(domain, token)
+        log.info("Request {0}".format(wellknown_url))
         try:
             resp = requests.get(wellknown_url)
-            resp_data = resp.content
+            resp_data = resp.content.decode('utf8').strip()
             #resp = urlopen(wellknown_url)
             #resp_data = resp.read().decode('utf8').strip()
             assert resp_data == keyauthorization
