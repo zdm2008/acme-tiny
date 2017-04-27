@@ -4,6 +4,10 @@ try:
     from urllib.request import urlopen # Python 3
 except ImportError:
     from urllib2 import urlopen # Python 2
+try:
+    import ssl
+except ImportError:
+    print "error: no ssl support"
 
 #DEFAULT_CA = "https://acme-staging.api.letsencrypt.org"
 DEFAULT_CA = "https://acme-v01.api.letsencrypt.org"
