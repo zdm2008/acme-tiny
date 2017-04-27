@@ -113,6 +113,7 @@ def get_crt(account_key, csr, acme_dir, log=LOGGER, CA=DEFAULT_CA):
 
         # check that the file is in place
         wellknown_url = "http://{0}/.well-known/acme-challenge/{1}".format(domain, token)
+        log.info("Request {0}...".format(wellknown_url))
         try:
             resp = requests.get(wellknown_url)
             resp_data = resp.content
